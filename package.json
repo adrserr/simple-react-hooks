@@ -1,0 +1,81 @@
+{
+  "name": "simple-react-hooks",
+  "version": "0.0.0",
+  "description": "Custom react hooks",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node"
+  },
+  "scripts": {
+    "type-check": "tsc --noEmit",
+    "type-check:watch": "npm run type-check -- --watch",
+    "build:types": "tsc --emitDeclarationOnly",
+    "build:js": "webpack --config webpack.config.js",
+    "build": "rimraf ./lib && npm run build:types && npm run build:js",
+    "test": "jest",
+    "clean:build": "rimraf ./lib",
+    "lint": "eslint --ext .ts,js,jsx,tsx src/",
+    "lint:fix": "npm run lint -- --fix",
+    "format": "prettier --write \"**/*.+(ts|tsx|js|jsx|json|css|md)\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adrserr/simple-react-hooks.git"
+  },
+  "keywords": [
+    "react",
+    "react-hooks",
+    "custom hooks"
+  ],
+  "author": "Adrián Serrano",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/adrserr/simple-react-hooks/issues"
+  },
+  "homepage": "https://github.com/adrserr/simple-react-hooks#readme",
+  "peerDependencies": {
+    "react": "^16.4.0",
+    "react-dom": "^16.13.1"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.9.6",
+    "@babel/preset-react": "^7.9.4",
+    "@babel/preset-typescript": "^7.9.0",
+    "@types/jest": "^24.9.1",
+    "@types/node": "^12.12.38",
+    "@types/react": "^16.9.34",
+    "@types/react-dom": "^16.9.7",
+    "@typescript-eslint/eslint-plugin": "^2.31.0",
+    "@typescript-eslint/parser": "^2.31.0",
+    "babel": "^6.23.0",
+    "babel-loader": "^8.1.0",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.1.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-jest": "^23.10.0",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-prettier": "^3.1.3",
+    "eslint-plugin-react": "^7.19.0",
+    "eslint-plugin-react-hooks": "^2.5.1",
+    "jest": "^26.0.1",
+    "prettier": "^2.0.5",
+    "rimraf": "^3.0.2",
+    "ts-jest": "^25.5.0",
+    "typescript": "^3.8.3",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11",
+    "react": "^16.4.0",
+    "react-dom": "^16.13.1",
+    "babel-polyfill": "^6.26.0"
+  },
+  "dependencies": {},
+  "files": [
+    "lib"
+  ],
+  "np": {
+    "contents": "lib"
+  }
+}
