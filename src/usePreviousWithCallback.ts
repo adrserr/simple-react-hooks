@@ -1,9 +1,9 @@
 import { useRef, useEffect } from 'react'
 
-export const usePreviousWithCallback = <T>(
+export default function usePreviousWithCallback<T>(
   value: T,
   callback: (prevValue: T | undefined, currentValue: T) => void
-): T => {
+): T {
   const ref = useRef<T>()
 
   useEffect(() => {

@@ -1,12 +1,12 @@
-import { useState, useEffect } from 'react'
+import { useState, useLayoutEffect } from 'react'
 
-export const useStateWithCallback = <T>(
+export default function useStateWithCallbackSync<T>(
   initialValue: T,
   callback: (value: T) => void
-): [T, React.Dispatch<React.SetStateAction<T>>] => {
+): [T, React.Dispatch<React.SetStateAction<T>>] {
   const [value, setValue] = useState<T>(initialValue)
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     callback(value)
   }, [callback, value])
 
