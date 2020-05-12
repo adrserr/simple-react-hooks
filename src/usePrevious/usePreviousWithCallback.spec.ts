@@ -1,27 +1,38 @@
-import * as React from 'react'
-import { PreviousWithCallback } from './../mocks/test-components'
-import { render, getByTestId, cleanup, getByText } from '@testing-library/react'
+import { renderHook } from '@testing-library/react-hooks'
+import { usePreviousWithCallback } from './usePreviousWithCallback'
 
-describe('usePrevious', () => {
-  afterEach(cleanup)
-
-  it('should return previous undefined on first run', () => {
-    const { container } = render(<PreviousWithCallback />)
-    const prev = getByTestId(container, 'prev')
-    const current = getByTestId(container, 'current')
-    expect(current.textContent).toBe('0')
-    expect(prev.textContent).toBe('')
+const stub = jest
+  .fn()
+  .mockImplementation((prev, current) => `Prev: ${prev}, Current: ${current}`)
+const setUp = () =>
+  renderHook(({ state }) => usePreviousWithCallback(state, stub), {
+    initialProps: { state: 0 }
   })
 
-  it('should return previous undefined on first run', () => {
-    const { container } = render(<PreviousWithCallback />)
-    const prev = getByTestId(container, 'prev')
-    const current = getByTestId(container, 'current')
-    expect(current.textContent).toBe('0')
-    expect(prev.textContent).toBe('')
-    const button = getByText(container, 'Add')
-    button.click()
-    expect(current.textContent).toBe('1')
-    expect(prev.textContent).toBe('0')
+describe('usePreviousWithCallback', () => {
+  afterEach(() => {
+    stub.mockClear()
+  })
+
+  it('should return undefined on first run', () => {
+    const { result } = setUp()
+
+    expect(result.current).toBeUndefined()
+    expect(stub).toHaveBeenCalledTimes(1)
+  })
+
+  it('should return previous value after each update', () => {
+    const { result, rerender } = setUp()
+
+    rerender({ state: 1 })
+    expect(result.current).toBe(0)
+
+    rerender({ state: 4 })
+    expect(result.current).toBe(1)
+
+    rerender({ state: 10 })
+    expect(result.current).toBe(4)
+
+    expect(stub).toHaveBeenCalledTimes(4)
   })
 })

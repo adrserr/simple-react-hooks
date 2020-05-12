@@ -1,27 +1,26 @@
-import * as React from 'react'
-import { render, getByTestId, cleanup, getByText } from '@testing-library/react'
-import { Previous } from '../mocks/test-components'
+import { renderHook } from '@testing-library/react-hooks'
+import { usePrevious } from './usePrevious'
+
+const setUp = () =>
+  renderHook(({ state }) => usePrevious(state), { initialProps: { state: 0 } })
 
 describe('usePrevious', () => {
-  afterEach(cleanup)
+  it('should return undefined on first run', () => {
+    const { result } = setUp()
 
-  it('should return previous undefined on first run', () => {
-    const { container } = render(<Previous />)
-    const prev = getByTestId(container, 'prev')
-    const current = getByTestId(container, 'current')
-    expect(current.textContent).toBe('0')
-    expect(prev.textContent).toBe('')
+    expect(result.current).toBeUndefined()
   })
 
-  it('should return previous undefined on first run', () => {
-    const { container } = render(<Previous />)
-    const prev = getByTestId(container, 'prev')
-    const current = getByTestId(container, 'current')
-    expect(current.textContent).toBe('0')
-    expect(prev.textContent).toBe('')
-    const button = getByText(container, 'Add')
-    button.click()
-    expect(current.textContent).toBe('1')
-    expect(prev.textContent).toBe('0')
+  it('should return previous value after each update', () => {
+    const { result, rerender } = setUp()
+
+    rerender({ state: 1 })
+    expect(result.current).toBe(0)
+
+    rerender({ state: 4 })
+    expect(result.current).toBe(1)
+
+    rerender({ state: 10 })
+    expect(result.current).toBe(4)
   })
 })
