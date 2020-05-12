@@ -40,11 +40,15 @@ module.exports = {
             }
           }
         ]
+      },
+      {
+        test: /\.json$/,
+        loader: 'json-loader'
       }
     ]
   },
   resolve: {
-    extensions: ['.tsx', '.ts', '.jsx', '.js']
+    extensions: ['.tsx', '.ts', '.jsx', '.js', '.json']
   },
   output: {
     path: path.resolve(__dirname, 'lib'),
