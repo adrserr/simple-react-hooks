@@ -90,9 +90,9 @@
   },
   "dependencies": {},
   "files": [
-    "lib"
+    "lib/"
   ],
   "np": {
-    "contents": "lib"
+    "contents": "lib/"
   }
 }
