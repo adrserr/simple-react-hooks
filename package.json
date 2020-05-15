@@ -1,9 +1,9 @@
 {
   "name": "simple-react-hooks",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Custom react hooks",
-  "main": "./lib/index.js",
-  "types": "./lib/index.d.ts",
+  "main": "./lib/src/index.js",
+  "types": "./lib/src/index.d.ts",
   "jest": {
     "transform": {
       "^.+\\.tsx?$": "ts-jest"

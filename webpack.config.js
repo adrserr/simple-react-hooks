@@ -48,10 +48,13 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ['.tsx', '.ts', '.jsx', '.js', '.json']
+    extensions: ['.tsx', '.ts', '.jsx', '.js', '.json'],
+    alias: {
+      'simple-react-hooks$': path.resolve(__dirname, 'lib/src/index.d.ts')
+    }
   },
   output: {
-    path: path.resolve(__dirname, 'lib'),
+    path: path.resolve(__dirname, 'lib/src'),
     filename: 'index.js',
     library: 'simple-react-hooks',
     libraryTarget: 'umd'
