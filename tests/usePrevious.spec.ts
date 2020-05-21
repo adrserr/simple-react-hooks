@@ -1,17 +1,28 @@
 import { renderHook } from '@testing-library/react-hooks'
 import { usePrevious } from '../src'
 
+const stub = jest
+  .fn()
+  .mockImplementation((prev, current) => `Prev: ${prev}, Current: ${current}`)
+
 const setUp = () =>
-  renderHook(({ state }) => usePrevious(state), { initialProps: { state: 0 } })
+  renderHook(({ state }) => usePrevious(state, stub), {
+    initialProps: { state: 0 }
+  })
 
 describe('usePrevious', () => {
-  it('should return undefined on first run', () => {
+  afterEach(() => {
+    stub.mockClear()
+  })
+
+  it('should return undefined on first run and execute callback', () => {
     const { result } = setUp()
 
     expect(result.current).toBeUndefined()
+    expect(stub).toHaveBeenCalledTimes(1)
   })
 
-  it('should return previous value after each update', () => {
+  it('should return previous value and execute callback after each update', () => {
     const { result, rerender } = setUp()
 
     rerender({ state: 1 })
@@ -22,5 +33,7 @@ describe('usePrevious', () => {
 
     rerender({ state: 10 })
     expect(result.current).toBe(4)
+
+    expect(stub).toHaveBeenCalledTimes(4)
   })
 })

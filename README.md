@@ -1,63 +1,23 @@
 # simple-react-hooks
 
-Custom React Hooks. A great variety of simple, yet powerful custom hooks.
+React hooks library. Simple, yet powerful custom hooks
 
 # Install
-
-Just this simple.
 
 ```
 npm i simple-react-hooks
 ```
 
-# Usage
+# Hooks
 
-- ## usePrevious(value)
-  Hook to get previous prop or state
+- [`usePrevious`](./docs/usePrevious.md) — return previous prop or state.
+- [`useStateWithCallback`](./docs/useStateWithCallback.md) — return a state and a setter. Callback could be passed and it would be excuted after each update.
+- [`useStateWithCallbackSync`](./docs/useStateWithCallbackSync.md) — same as useStateWithCallback, but synchronously.
+- [`useWatch`](./docs/useWatch.md) — on each update a console.log or a custom fn would be executed
 
-```TSX
-import { usePrevious } from 'simple-react-hooks'
+# Contributing
 
-.....
-const App = (props: AppProps) => {
-  const [count, setCount] = useState(0)
-
-  const prevCount = usePrevious<number>(count)
-
-return (
-  <div>
-    <button type="button" onClick={() => setCount(c => c + 1)>
-    Current count: {count}, Previous count: {prevCount}
-    </button>
-  </div>
-  )
-}
-```
-
-- ## usePrevious(value)
-  Hook to get previous prop or state, with a callback to be executed when the value is updated.
-
-```TSX
-import { usePreviousWithCallback } from 'simple-react-hooks'
-.....
-const App = (props: AppProps) => {
-  const [count, setCount] = useState(0)
-
-  const callback = useCallback((prev, current) => {
-    console.log(prev,current)
-  })
-
-  const prevCount = usePreviousWithCalback<number>(count, callback)
-
-return (
-  <div>
-    <button type="button" onClick={() => setCount(c => c + 1)>
-    Current count: {count}, Previous count: {prevCount}
-    </button>
-  </div>
-  )
-}
-```
+Feel free to open a PR, or suggest any improvements.
 
 # Author
 
