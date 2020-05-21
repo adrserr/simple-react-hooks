@@ -35,7 +35,8 @@
     "prebuild": "rimraf ./dist && npm run test && npm run lint:fix",
     "build": "npm run build:types && npm run build:js",
     "postbuild": "cp package.json dist/ && cp README.md dist/ && cp LICENSE dist/ && cp -R docs dist/",
-    "deploy": "npm run build && cd dist && np"
+    "deploy": "npm run build && cd dist && np",
+    "deploy:test": "npm run build && cd dist && np --no-publish"
   },
   "repository": {
     "type": "git",
