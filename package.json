@@ -1,6 +1,6 @@
 {
   "name": "simple-react-hooks",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Custom react hooks",
   "main": "src/index.js",
   "unpkg": "src/index.js",
@@ -35,8 +35,7 @@
     "prebuild": "rimraf ./dist && npm run test && npm run lint:fix",
     "build": "npm run build:types && npm run build:js",
     "postbuild": "cp package.json dist/ && cp README.md dist/ && cp LICENSE dist/ && cp -R docs dist/",
-    "deploy": "npm run build && cd dist && np",
-    "deploy:test": "npm run build && cd dist && np --no-publish"
+    "deploy": "npm run build && cd dist && npm publish"
   },
   "repository": {
     "type": "git",
