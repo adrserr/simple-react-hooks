@@ -13,14 +13,14 @@ import { useWatch } from 'simple-react-hooks'
 const App = (props: AppProps) => {
   const [count, setCount] = useState(0)
 
-  useWatch<number>(count, (prev,current) => console.log(prev,current))
+  useWatch<number>(count, (prev, current) => console.log(prev, current))
 
-return (
-  <div>
-    <button type="button" onClick={() => setCount(c => c + 1)>
-    Current count: {count}
-    </button>
-  </div>
+  return (
+    <div>
+      <button type="button" onClick={() => setCount((c) => c + 1)}>
+        Current count: {count}
+      </button>
+    </div>
   )
 }
 ```

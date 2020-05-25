@@ -3,25 +3,25 @@ import { useWatch } from '../src'
 
 const setUp = () => renderHook((state) => useWatch(state), { initialProps: 0 })
 
+const mockConsole = jest
+  .spyOn(console, 'log')
+  .mockImplementation((previous: any, current: any) => ({
+    previous,
+    current
+  }))
+
 const stub = jest.fn().mockImplementation((prev: any, current: any) => ({
   prev,
   current
 }))
 
-// const setUpWithFn = () =>
-//   renderHook(({ state }) => useWatch(state, stub), {
-//     initialProps: { state: 0 }
-//   })
-
-const mockConsole = jest
-  .spyOn(console, 'log')
-  .mockImplementation((prev: any, current: any) => ({
-    previous: prev,
-    current
-  }))
+const setUpWithFn = () =>
+  renderHook((state) => useWatch(state, stub), {
+    initialProps: 0
+  })
 
 describe('useWatch', () => {
-  afterEach(function () {
+  afterEach(() => {
     stub.mockClear()
     mockConsole.mockClear()
   })
@@ -52,5 +52,16 @@ describe('useWatch', () => {
     })
 
     expect(mockConsole).toHaveBeenCalledTimes(2)
+  })
+
+  it('should call custom function instead of console.log', () => {
+    const { rerender } = setUpWithFn()
+
+    expect(stub).toHaveBeenCalledWith(undefined, 0)
+
+    rerender(1)
+    expect(stub).toHaveBeenCalledWith(0, 1)
+
+    expect(mockConsole).not.toHaveBeenCalled()
   })
 })

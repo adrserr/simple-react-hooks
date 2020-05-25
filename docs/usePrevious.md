@@ -10,14 +10,16 @@ import { usePrevious } from 'simple-react-hooks'
 const App = (props: AppProps) => {
   const [count, setCount] = useState(0)
 
-  const prevCount = usePrevious<number>(count, (prev, current) => console.log(prev,current))
+  const prevCount = usePrevious<number>(count, (prev, current) =>
+    console.log(prev, current)
+  )
 
-return (
-  <div>
-    <button type="button" onClick={() => setCount(c => c + 1)>
-    Current count: {count}, Previous count: {prevCount}
-    </button>
-  </div>
+  return (
+    <div>
+      <button type="button" onClick={() => setCount((c) => c + 1)}>
+        Current count: {count}, Previous count: {prevCount}
+      </button>
+    </div>
   )
 }
 ```
