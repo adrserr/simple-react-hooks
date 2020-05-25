@@ -13,7 +13,8 @@ npm i simple-react-hooks
 - [`usePrevious`](./docs/usePrevious.md) — return previous prop or state.
 - [`useStateWithCallback`](./docs/useStateWithCallback.md) — return a state and a setter. Callback could be passed and it would be executed after each update.
 - [`useStateWithCallbackSync`](./docs/useStateWithCallbackSync.md) — same as useStateWithCallback, but synchronously.
-- [`useWatch`](./docs/useWatch.md) — on each update a console.log or a custom fn would be executed
+- [`useWatch`](./docs/useWatch.md) — on each update a console.log or a custom fn would be executed.
+- [`useForceUpdate`](./docs/useForceUpdate.md) — force a component to re-render.
 
 # Contributing
 
