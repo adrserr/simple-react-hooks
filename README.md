@@ -15,6 +15,7 @@ npm i simple-react-hooks
 - [`useStateWithCallbackSync`](./docs/useStateWithCallbackSync.md) — same as useStateWithCallback, but synchronously.
 - [`useWatch`](./docs/useWatch.md) — on each update a console.log or a custom fn would be executed.
 - [`useForceUpdate`](./docs/useForceUpdate.md) — force a component to re-render.
+- [`useTimeout`](./docs/useTimeout.md) — start a timeout that will fire a callback, you could stop it or restart.
 
 # Contributing
 
